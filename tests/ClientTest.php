@@ -2,11 +2,11 @@
 
 // ClientTest
 
-use Fliq\Unique\Client;
+use Fliq\Unique\UniqueClient;
 use GuzzleHttp\Promise\PromiseInterface;
 
 it('sends get requests', function () {
-    $client = new Client(LOCAL_REST_URI);
+    $client = new UniqueClient(LOCAL_REST_URI);
 
     $response = $client->get('address-utils/mirror/substrate-to-ethereum', [
         'address' => '5GH16wWqd8QmupCxsdAUCUaf7XvmPCjxexKgugxbCN2a7W9Y',
@@ -16,7 +16,7 @@ it('sends get requests', function () {
 });
 
 it('sends post requests', function () {
-    $client = new Client(LOCAL_REST_URI);
+    $client = new UniqueClient(LOCAL_REST_URI);
 
     $response = $client->post('account/generate', [
         'pairType' => 'sr25519',

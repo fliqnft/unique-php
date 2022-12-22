@@ -5,7 +5,7 @@ namespace Fliq\Unique;
 class ExtrinsicResponse
 {
 
-    public function __construct(protected array $response, protected Client $client)
+    public function __construct(protected array $response, protected UniqueClientInterface $client)
     {
     }
 

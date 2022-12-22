@@ -2,18 +2,12 @@
 
 namespace Fliq\Unique;
 
-class Collections
+class Collections extends UniqueResource
 {
-
-    public function __construct(protected Client $client)
-    {
-    }
 
     public function create(array $data)
     {
-        $request = new ExtrinsicRequest('collections', $this->client);
-
-        return $request->send($data);
+        return $this->sendExtrinsic('collections', $data);
     }
 
     // maybe instead of an int make it mixed so it could be an array, then I could have an interface
@@ -21,6 +15,26 @@ class Collections
     public function get(int $collectionId)
     {
         return $this->client->get('collections', ['collectionId' => $collectionId]);
+    }
+
+    public function getProperties(int $collectionId)
+    {
+        return $this->client->get('collections/properties', ['collectionId' => $collectionId]);
+    }
+
+    public function setSponsor(array $args)
+    {
+        return $this->sendExtrinsic('collections/sponsorship', $args);
+    }
+
+    public function confirmSponsorship(array $args)
+    {
+        return $this->sendExtrinsic('collections/sponsorship/confirm', $args);
+    }
+
+    public function setAdmin(array $args)
+    {
+        return $this->sendExtrinsic('collections/admins', $args);
     }
 
 

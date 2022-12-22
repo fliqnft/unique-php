@@ -6,7 +6,7 @@ use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Client
+class UniqueClient implements UniqueClientInterface
 {
     const UNIQUE_REST_URI = 'https://rest.unique.network/unique/v1';
 
@@ -26,18 +26,18 @@ class Client
         ]);
     }
 
-    public function get(string $uri, $query = [])
+    public function get(string $uri, $query = []) : UniqueResponseInterface
     {
         return $this->request('GET', $uri, ['query' => $query]);
     }
 
-    private function request(string $method, string $uri, array $options = [])
-    {
-        return new Response($this->client->request($method, $uri, $options));
-    }
-
-    public function post(string $uri, array $data)
+    public function post(string $uri, array $data) : UniqueResponseInterface
     {
         return $this->request('POST', $uri, ['json' => $data]);
+    }
+
+    private function request(string $method, string $uri, array $options = []) : UniqueResponseInterface
+    {
+        return new Response($this->client->request($method, $uri, $options));
     }
 }

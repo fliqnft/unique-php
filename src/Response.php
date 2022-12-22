@@ -4,7 +4,7 @@ namespace Fliq\Unique;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
-class Response
+class Response implements UniqueResponseInterface
 {
     public function __construct(protected GuzzleResponse $response)
     {

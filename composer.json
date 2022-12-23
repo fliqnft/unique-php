@@ -1,6 +1,6 @@
 {
     "name": "fliq/unique-php",
-    "description": ":package_description",
+    "description": "Package to interact with unique networks' Substrate rest client",
     "license": "MIT",
     "authors": [
         {

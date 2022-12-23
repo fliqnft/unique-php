@@ -7,9 +7,9 @@ abstract class UniqueResource
     public function __construct(protected UniqueClient $client)
     {
     }
-    protected function sendExtrinsic(string $uri, array $data): ExtrinsicResponse
+    protected function sendExtrinsic(string $uri, array $data, string $method = 'POST'): ExtrinsicResponse
     {
-        $request = new ExtrinsicRequest($uri, $this->client);
+        $request = new ExtrinsicRequest($uri, $this->client, $method);
 
         return $request->send($data);
     }

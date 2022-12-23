@@ -5,11 +5,11 @@ namespace Fliq\Unique;
 class ExtrinsicRequest
 {
 
-    public function __construct(protected string $uri, protected UniqueClientInterface $client)
+    public function __construct(protected string $uri, protected UniqueClientInterface $client, protected $method = 'POST')
     {
     }
 
-    public function send(array $data)
+    public function send(array $data): ExtrinsicResponse
     {
         $buildResult = $this->build($data);
         $signResult = $this->sign($buildResult);
@@ -20,19 +20,24 @@ class ExtrinsicRequest
 
     protected function build(array $data): mixed
     {
-        return $this->client->post($this->uri . '?use=Build', $data)->json();
+        return $this->request($this->uri . '?use=Build', $data);
     }
 
 
     protected function sign(mixed $buildResult): mixed
     {
-        return $this->client->post($this->uri . '?use=Sign', $buildResult)->json();
+        return $this->request($this->uri . '?use=Sign', $buildResult);
     }
 
 
     protected function submit(mixed $signResult): mixed
     {
-        return $this->client->post($this->uri . '?use=Submit', $signResult)->json();
+        return $this->request($this->uri . '?use=Submit', $signResult);
+    }
+
+    protected function request($uri, $result)
+    {
+        return $this->client->{strtolower($this->method)}($uri, $result)->json();
     }
 
 }

@@ -26,17 +26,22 @@ class UniqueClient implements UniqueClientInterface
         ]);
     }
 
-    public function get(string $uri, $query = []) : UniqueResponseInterface
+    public function get(string $uri, $query = []): UniqueResponseInterface
     {
         return $this->request('GET', $uri, ['query' => $query]);
     }
 
-    public function post(string $uri, array $data) : UniqueResponseInterface
+    public function post(string $uri, array $data): UniqueResponseInterface
     {
         return $this->request('POST', $uri, ['json' => $data]);
     }
 
-    private function request(string $method, string $uri, array $options = []) : UniqueResponseInterface
+    public function patch(string $uri, array $data): UniqueResponseInterface
+    {
+        return $this->request('PATCH', $uri, ['json' => $data]);
+    }
+
+    private function request(string $method, string $uri, array $options = []): UniqueResponseInterface
     {
         return new Response($this->client->request($method, $uri, $options));
     }

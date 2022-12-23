@@ -8,4 +8,6 @@ interface UniqueClientInterface
 
     public function post(string $uri, array $data): UniqueResponseInterface;
 
+    public function patch(string $uri, array $data): UniqueResponseInterface;
+
 }

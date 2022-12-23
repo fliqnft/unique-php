@@ -1,5 +1,6 @@
 <?php
 
+use Fliq\Unique\Tokens;
 use Fliq\Unique\UniqueClient;
 use Fliq\Unique\Collections;
 use function Pest\Faker\faker;
@@ -37,4 +38,23 @@ function testCollection(): int
             'coverPicture' => ['ipfsCid' => 'Qmb8Mun46txkiACS5tSnKXvoHXxVQ2nofMPftqrDnbuP2A'],
         ],
     ])->wait()['parsed']['collectionId'];
+}
+
+
+function testToken() : array
+{
+    $collectionId = testCollection();
+
+    $tokens = new Tokens(testClient());
+
+    return $tokens->create([
+        'address' => ALICE_ADDRESS,
+        'owner' => ALICE_ADDRESS,
+        'collectionId' => $collectionId,
+        'data' => [
+            'image' => [
+                'urlInfix' => 'QmbXTg5E5Sh1B4bac4LaSsbq8qrHqyRB8kx1jEM8Wh1wNv',
+            ],
+        ],
+    ])->wait()['parsed'];
 }

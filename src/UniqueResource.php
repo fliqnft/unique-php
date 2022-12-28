@@ -4,7 +4,7 @@ namespace Fliq\Unique;
 
 abstract class UniqueResource
 {
-    public function __construct(protected UniqueClient $client)
+    public function __construct(protected UniqueClientInterface $client)
     {
     }
     protected function sendExtrinsic(string $uri, array $data, string $method = 'POST'): ExtrinsicResponse

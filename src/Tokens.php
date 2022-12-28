@@ -20,4 +20,9 @@ class Tokens extends UniqueResource
         return $this->sendExtrinsic('tokens/transfer', $args, 'PATCH');
     }
 
+    public function getAccountTokens(array $args) : UniqueResponseInterface
+    {
+        return $this->client->get('tokens/account-tokens', $args);
+    }
+
 }

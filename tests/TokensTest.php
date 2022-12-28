@@ -56,5 +56,19 @@ it('gets transfers tokens', function () {
     ]);
 });
 
-it('gets token properties');
+it('gets tokens owned by account', function () {
+    $arr = testToken();
 
+    $tokens = new Tokens(testClient());
+
+    $result = $tokens->getAccountTokens([
+        'address' => ALICE_ADDRESS,
+        'collectionId' => $arr['collectionId'],
+    ])->json('tokens');
+
+    expect($result)
+        ->toHaveCount(1)
+        ->and($result[0])
+        ->toHaveKeys(['collectionId', 'tokenId']);
+
+})->only();

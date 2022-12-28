@@ -8,11 +8,6 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class UniqueClient implements UniqueClientInterface
 {
-    const UNIQUE_REST_URI = 'https://rest.unique.network/unique/v1';
-
-    const QUARTZ_REST_URI = 'https://rest.unique.network/unique/v1';
-
-    const OPAL_REST_URI = 'https://rest.unique.network/unique/v1';
 
     private GuzzleClient $client;
 

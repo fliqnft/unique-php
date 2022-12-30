@@ -71,4 +71,4 @@ it('gets tokens owned by account', function () {
         ->and($result[0])
         ->toHaveKeys(['collectionId', 'tokenId']);
 
-})->only();
+});
